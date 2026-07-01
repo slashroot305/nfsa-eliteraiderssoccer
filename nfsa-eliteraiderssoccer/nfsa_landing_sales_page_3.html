@@ -1,0 +1,2970 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="Nana Frimpong Sintim-Aboagye" name="author"/>
+  <meta content="© 2026 Nana Frimpong Sintim-Aboagye. All Rights Reserved." name="copyright"/>
+  <title>
+   Elite Raiders Soccer — Elite Development Program
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800;900&amp;family=Instrument+Serif:ital@0;1&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+  <style>
+   :root {
+        --black: #080807;
+        --ink: #10100d;
+        --ink2: #151511;
+        --ink3: #1d1c17;
+        --cream: #f6f1e8;
+        --cream2: #d4cfbf;
+        --mist: #8e8878;
+        --mist2: #6c665c;
+        --lime: #18b872;
+        --lime2: #4dd39a;
+        --gold: #c8890a;
+        --gold2: #f0ae2a;
+        --blue: #2a6db5;
+        --blue2: #5a9fe8;
+        --purple: #6b4fb5;
+        --orange: #c86020;
+        --orange2: #f07840;
+        --red: #b83030;
+        --red2: #e05555;
+        --r: 8px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Syne", sans-serif;
+        background: var(--black);
+        color: var(--cream);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        opacity: 0.022;
+        pointer-events: none;
+        z-index: 999;
+      }
+
+      #cur,
+      #cur-r {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+      }
+      #cur {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--lime);
+      }
+      #cur-r {
+        width: 40px;
+        height: 40px;
+        border: 1.5px solid rgba(24, 184, 114, 0.35);
+        border-radius: 50%;
+        transition:
+          width 0.2s,
+          height 0.2s,
+          border-color 0.2s;
+      }
+
+      .topbar {
+        background: var(--lime);
+        color: rgba(255, 255, 255, 0.93);
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        padding: 8px clamp(20px, 5vw, 80px);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .topbar a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 600;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 clamp(20px, 5vw, 80px);
+        height: 64px;
+        background: rgba(8, 8, 7, 0.94);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(24, 184, 114, 0.12);
+      }
+      .nav-logo {
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: 4px;
+      }
+      .nav-logo span {
+        color: var(--lime);
+      }
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--mist);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--lime);
+      }
+      .nav-cta {
+        background: var(--lime);
+        color: var(--black) !important;
+        padding: 8px 18px;
+        border-radius: var(--r);
+        font-weight: 700 !important;
+        box-shadow: 0 0 22px rgba(24, 184, 114, 0.2);
+      }
+      .nav-cta:hover {
+        background: var(--lime2) !important;
+        transform: translateY(-1px);
+      }
+
+      section {
+        padding: clamp(88px, 10vw, 130px) clamp(20px, 6vw, 90px);
+      }
+      .section-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--lime);
+      }
+      .section-tag::before {
+        content: "";
+        width: 24px;
+        height: 1.5px;
+        background: var(--lime);
+      }
+      .h2 {
+        font-size: clamp(38px, 5.2vw, 72px);
+        line-height: 0.94;
+        letter-spacing: -1px;
+        font-weight: 800;
+        margin-bottom: 16px;
+        color: var(--cream);
+      }
+      .h2 em {
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        color: var(--lime);
+        font-weight: 400;
+      }
+      .h2 .gold {
+        color: var(--gold2);
+      }
+      .body-text {
+        font-size: 15px;
+        line-height: 1.8;
+        color: var(--mist);
+        max-width: 640px;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      .d1 {
+        transition-delay: 0.1s;
+      }
+      .d2 {
+        transition-delay: 0.18s;
+      }
+      .d3 {
+        transition-delay: 0.26s;
+      }
+      .d4 {
+        transition-delay: 0.34s;
+      }
+
+      #hero {
+        min-height: calc(100vh - 64px);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        position: relative;
+        overflow: hidden;
+        padding-top: 80px;
+        padding-bottom: 40px;
+        background:
+          radial-gradient(
+            circle at top right,
+            rgba(240, 174, 42, 0.08),
+            transparent 34%
+          ),
+          linear-gradient(135deg, rgba(24, 184, 114, 0.04), transparent 30%);
+      }
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: 80px 80px;
+        mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          black 40%,
+          transparent 100%
+        );
+        opacity: 0.5;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 60px;
+        align-items: end;
+      }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        color: var(--lime);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        opacity: 0;
+        animation: fadeUp 0.7s 0.1s forwards;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 24px;
+        height: 1.5px;
+        background: var(--lime);
+      }
+      .hero-h1 {
+        font-size: clamp(62px, 8.6vw, 124px);
+        font-weight: 800;
+        line-height: 0.88;
+        letter-spacing: -2px;
+        margin-bottom: 24px;
+        opacity: 0;
+        animation: fadeUp 0.8s 0.2s forwards;
+      }
+      .hero-h1 .line-green {
+        display: block;
+        color: var(--lime);
+      }
+      .hero-h1 .line-gold {
+        display: block;
+        color: var(--gold2);
+      }
+      .hero-desc {
+        font-size: 16px;
+        line-height: 1.85;
+        color: var(--mist);
+        max-width: 540px;
+        margin-bottom: 34px;
+        opacity: 0;
+        animation: fadeUp 0.8s 0.32s forwards;
+      }
+      .hero-desc strong {
+        color: var(--cream2);
+        font-weight: 600;
+      }
+      .hero-btns {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: fadeUp 0.8s 0.44s forwards;
+      }
+      .btn-main,
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 24px;
+        border-radius: var(--r);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        transition: all 0.2s;
+      }
+      .btn-main {
+        background: var(--lime);
+        color: var(--black);
+        box-shadow: 0 4px 28px rgba(24, 184, 114, 0.25);
+      }
+      .btn-main:hover {
+        background: var(--lime2);
+        transform: translateY(-2px);
+      }
+      .btn-ghost {
+        color: var(--cream2);
+        border: 1.5px solid rgba(255, 255, 255, 0.1);
+      }
+      .btn-ghost:hover {
+        color: var(--lime);
+        border-color: rgba(24, 184, 114, 0.35);
+      }
+      .hero-right {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        opacity: 0;
+        animation: fadeUp 0.9s 0.5s forwards;
+      }
+      .hero-stat-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 12px;
+        padding: 20px 22px;
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .hero-stat-card:hover {
+        border-color: rgba(24, 184, 114, 0.2);
+        background: rgba(24, 184, 114, 0.04);
+      }
+      .hsc-num {
+        font-size: 38px;
+        font-weight: 800;
+        color: var(--gold2);
+        line-height: 1;
+        min-width: 76px;
+      }
+      .hsc-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--cream2);
+        margin-bottom: 4px;
+      }
+      .hsc-desc {
+        font-size: 11px;
+        line-height: 1.45;
+        color: var(--mist);
+      }
+      .hero-ticker {
+        margin-top: 54px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        opacity: 0;
+        animation: fadeUp 0.8s 0.6s forwards;
+      }
+      .ticker-item {
+        padding: 22px 0 8px;
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .ticker-item:last-child {
+        border-right: none;
+      }
+      .ti-num {
+        font-size: 34px;
+        font-weight: 800;
+        color: var(--lime);
+        line-height: 1;
+        margin-bottom: 2px;
+      }
+      .ti-label {
+        font-size: 10px;
+        color: var(--mist);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .marquee-bar {
+        background: var(--lime);
+        color: var(--black);
+        padding: 12px 0;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .marquee-track {
+        display: inline-block;
+        animation: marquee 20s linear infinite;
+      }
+      .m-item {
+        display: inline-block;
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 0 44px;
+      }
+      .m-dot {
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        background: rgba(8, 8, 7, 0.3);
+        border-radius: 50%;
+        vertical-align: middle;
+        margin: 0 8px;
+      }
+
+      #offseason {
+        background: var(--ink);
+        position: relative;
+        overflow: hidden;
+      }
+      #offseason::before {
+        content: "";
+        position: absolute;
+        top: -30%;
+        right: -15%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(240, 174, 42, 0.07) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .offseason-intro {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 70px;
+        align-items: start;
+        margin-bottom: 56px;
+      }
+      .os-tabs {
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        margin-bottom: 32px;
+      }
+      .os-tab {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 12px 16px;
+        color: var(--mist);
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+        user-select: none;
+      }
+      .os-tab:hover {
+        color: var(--cream);
+      }
+      .os-tab.active {
+        color: var(--gold2);
+        border-bottom-color: var(--gold2);
+      }
+      .os-panel {
+        display: none;
+      }
+      .os-panel.active {
+        display: block;
+      }
+      .week-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 16px;
+      }
+      .week-card {
+        background: var(--ink2);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 10px;
+        overflow: hidden;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .week-card:hover {
+        border-color: rgba(240, 174, 42, 0.2);
+        transform: translateY(-3px);
+      }
+      .wc-header {
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .wc-week {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--mist);
+      }
+      .wc-focus {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 3px 8px;
+        border-radius: 3px;
+        background: rgba(240, 174, 42, 0.12);
+        color: var(--gold2);
+      }
+      .wc-body {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .wc-day {
+        display: flex;
+        gap: 10px;
+        font-size: 12px;
+        color: var(--cream2);
+        line-height: 1.6;
+      }
+      .wc-day-label {
+        font-weight: 700;
+        color: var(--mist2);
+        min-width: 34px;
+        font-size: 11px;
+      }
+      .fitness-pillars {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+        margin-top: 56px;
+      }
+      .fp-card {
+        background: var(--ink2);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 10px;
+        padding: 22px;
+        position: relative;
+        overflow: hidden;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .fp-card:hover {
+        border-color: var(--fp-color, var(--lime));
+        transform: translateY(-3px);
+      }
+      .fp-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--fp-color, var(--lime));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s;
+      }
+      .fp-card:hover::before {
+        transform: scaleX(1);
+      }
+      .fp-icon {
+        font-size: 24px;
+        margin-bottom: 12px;
+      }
+      .fp-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--cream);
+        margin-bottom: 6px;
+      }
+      .fp-text {
+        font-size: 12px;
+        line-height: 1.7;
+        color: var(--mist);
+      }
+
+      #features {
+        background: var(--ink2);
+      }
+      .features-bento {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 12px;
+        margin-top: 54px;
+      }
+      .fb {
+        background: var(--ink3);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        padding: 28px;
+        position: relative;
+        overflow: hidden;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .fb:hover {
+        border-color: rgba(24, 184, 114, 0.25);
+        transform: translateY(-3px);
+      }
+      .fb::before {
+        content: attr(data-ghost);
+        position: absolute;
+        bottom: -8px;
+        right: -4px;
+        font-size: 78px;
+        font-weight: 800;
+        color: rgba(255, 255, 255, 0.025);
+        line-height: 1;
+        pointer-events: none;
+      }
+      .fb-1 {
+        grid-column: span 2;
+      }
+      .fb-2 {
+        grid-column: span 2;
+      }
+      .fb-3 {
+        grid-column: span 2;
+      }
+      .fb-4 {
+        grid-column: span 3;
+      }
+      .fb-5 {
+        grid-column: span 3;
+      }
+      .fb-6 {
+        grid-column: span 4;
+      }
+      .fb-7 {
+        grid-column: span 2;
+      }
+      .fb-accent {
+        width: 100%;
+        height: 2px;
+        border-radius: 2px;
+        margin-bottom: 18px;
+      }
+      .fb-icon {
+        font-size: 24px;
+        margin-bottom: 12px;
+      }
+      .fb-stat {
+        font-size: 36px;
+        font-weight: 800;
+        color: var(--gold2);
+        letter-spacing: -1px;
+        margin-bottom: 6px;
+      }
+      .fb-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--cream);
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+      .fb-desc {
+        font-size: 12.5px;
+        line-height: 1.75;
+        color: var(--mist);
+      }
+
+      .setplays-bar {
+        margin: 0 auto;
+        max-width: 1152px;
+        background: rgba(240, 174, 42, 0.08);
+        border: 1px solid rgba(240, 174, 42, 0.2);
+        border-radius: 14px;
+        padding: 28px 32px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 26px;
+        align-items: center;
+      }
+      .sp-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--cream);
+        margin-bottom: 6px;
+      }
+      .sp-text {
+        font-size: 13px;
+        line-height: 1.7;
+        color: var(--mist);
+      }
+      .sp-plays {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .sp-play {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 6px 12px;
+        border-radius: 4px;
+        background: rgba(240, 174, 42, 0.12);
+        border: 1px solid rgba(240, 174, 42, 0.25);
+        color: var(--gold2);
+      }
+
+      #pressing {
+        background: var(--black);
+        position: relative;
+        overflow: hidden;
+      }
+      #pressing::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 79px,
+            rgba(24, 184, 114, 0.03) 79px,
+            rgba(24, 184, 114, 0.03) 80px
+          ),
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 79px,
+            rgba(24, 184, 114, 0.03) 79px,
+            rgba(24, 184, 114, 0.03) 80px
+          );
+        pointer-events: none;
+      }
+      .press-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 48px;
+      }
+      .pc {
+        background: var(--ink2);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        padding: 26px;
+        position: relative;
+        overflow: hidden;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .pc:hover {
+        border-color: var(--pc-col, var(--lime));
+        transform: translateY(-4px);
+      }
+      .pc::after {
+        content: attr(data-n);
+        position: absolute;
+        bottom: -12px;
+        right: 12px;
+        font-size: 88px;
+        font-weight: 800;
+        color: rgba(255, 255, 255, 0.025);
+        line-height: 1;
+        pointer-events: none;
+      }
+      .pc-nfl {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--pc-col, var(--lime));
+        border: 1px solid var(--pc-col, var(--lime));
+        border-radius: 3px;
+        padding: 3px 8px;
+        margin-bottom: 14px;
+        opacity: 0.9;
+      }
+      .pc-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--cream);
+        margin-bottom: 10px;
+        line-height: 1.2;
+      }
+      .pc-desc {
+        font-size: 13px;
+        color: var(--mist);
+        line-height: 1.75;
+      }
+      .pc-trigger {
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 11px;
+        color: var(--mist);
+      }
+      .pc-trigger strong {
+        color: var(--pc-col, var(--lime));
+      }
+
+      #positions {
+        background: var(--ink);
+      }
+      .pos-tabs {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        margin-top: 46px;
+        margin-bottom: 30px;
+      }
+      .pos-tab {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 10px 14px;
+        color: var(--mist);
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+        user-select: none;
+      }
+      .pos-tab:hover {
+        color: var(--cream);
+      }
+      .pos-tab.active {
+        color: var(--lime);
+        border-bottom-color: var(--lime);
+      }
+      .pos-panel {
+        display: none;
+      }
+      .pos-panel.active {
+        display: grid;
+        grid-template-columns: 1fr 1.3fr;
+        gap: 48px;
+        align-items: start;
+        background: var(--ink2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 14px;
+        padding: 32px;
+      }
+      .pos-title {
+        font-size: clamp(30px, 3.4vw, 44px);
+        font-weight: 800;
+        color: var(--cream);
+        letter-spacing: -1px;
+        line-height: 1.05;
+        margin-bottom: 10px;
+      }
+      .pos-sub {
+        font-size: 13px;
+        color: var(--mist);
+        line-height: 1.75;
+        margin-bottom: 16px;
+      }
+      .pos-attrs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .pos-attr {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 4px;
+      }
+      .pos-drills {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .pos-drill {
+        background: var(--ink3);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        padding: 16px;
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      .pd-num {
+        font-family: "DM Mono", monospace;
+        font-size: 20px;
+        font-weight: 500;
+        color: rgba(24, 184, 114, 0.25);
+        line-height: 1;
+        flex-shrink: 0;
+        width: 30px;
+      }
+      .pd-name {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--cream2);
+        margin-bottom: 4px;
+      }
+      .pd-desc {
+        font-size: 12px;
+        color: var(--mist);
+        line-height: 1.65;
+      }
+
+      #proof {
+        background: var(--ink2);
+        text-align: center;
+      }
+      .proof-pull {
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        font-size: clamp(22px, 3.2vw, 36px);
+        color: var(--cream);
+        line-height: 1.45;
+        max-width: 820px;
+        margin: 40px auto 0;
+      }
+      .proof-pull em {
+        font-style: normal;
+        color: var(--lime);
+      }
+      .proof-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 48px;
+        text-align: left;
+      }
+      .proof-card {
+        background: var(--ink3);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        padding: 24px;
+        transition:
+          transform 0.2s,
+          border-color 0.2s;
+      }
+      .proof-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(24, 184, 114, 0.2);
+      }
+      .proof-icon {
+        font-size: 24px;
+        margin-bottom: 12px;
+      }
+      .proof-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--cream);
+        margin-bottom: 8px;
+      }
+      .proof-text {
+        font-size: 12.5px;
+        line-height: 1.75;
+        color: var(--mist);
+      }
+
+      #pricing {
+        background: var(--black);
+      }
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 48px;
+        align-items: start;
+      }
+      .price-card {
+        background: var(--ink2);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 16px;
+        padding: 30px 26px;
+        position: relative;
+        transition:
+          transform 0.2s,
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .price-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(24, 184, 114, 0.25);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+      }
+      .price-card.hot {
+        border-color: var(--lime);
+        background: rgba(12, 107, 80, 0.1);
+      }
+      .price-card.hot::before {
+        content: "MOST POPULAR";
+        position: absolute;
+        top: -11px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--lime);
+        color: var(--black);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        padding: 3px 12px;
+        border-radius: 20px;
+      }
+      .pt {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--lime);
+        margin-bottom: 10px;
+      }
+      .pn {
+        font-size: 26px;
+        font-weight: 800;
+        color: var(--cream);
+        margin-bottom: 6px;
+        letter-spacing: -0.5px;
+      }
+      .pd {
+        font-size: 12.5px;
+        color: var(--mist);
+        line-height: 1.65;
+        margin-bottom: 18px;
+      }
+      .pp {
+        font-size: 50px;
+        font-weight: 800;
+        color: var(--cream);
+        letter-spacing: -2px;
+        line-height: 1;
+      }
+      .pp sup {
+        font-size: 22px;
+        vertical-align: super;
+        letter-spacing: 0;
+      }
+      .pp-per {
+        font-size: 12px;
+        color: var(--mist);
+        margin-top: 2px;
+        margin-bottom: 20px;
+      }
+      .p-div {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.06);
+        margin: 20px 0;
+      }
+      .p-feats {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        margin-bottom: 24px;
+      }
+      .p-feat {
+        display: flex;
+        gap: 10px;
+        font-size: 12.5px;
+        color: var(--cream2);
+      }
+      .p-feat::before {
+        content: "✓";
+        color: var(--lime);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .p-feat.no {
+        color: var(--mist2);
+      }
+      .p-feat.no::before {
+        content: "–";
+        color: rgba(255, 255, 255, 0.12);
+      }
+      .btn-po {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 13px;
+        border-radius: var(--r);
+        font-size: 13px;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .btn-po-out {
+        background: transparent;
+        border: 1.5px solid rgba(255, 255, 255, 0.12);
+        color: var(--cream);
+      }
+      .btn-po-out:hover {
+        border-color: var(--lime);
+        color: var(--lime);
+      }
+      .btn-po-fill {
+        background: var(--lime);
+        color: var(--black);
+      }
+      .btn-po-fill:hover {
+        background: var(--lime2);
+        transform: translateY(-2px);
+      }
+      .btn-po-gold {
+        background: var(--gold2);
+        color: var(--black);
+      }
+      .btn-po-gold:hover {
+        background: #f5c040;
+        transform: translateY(-2px);
+      }
+      .compare-note {
+        text-align: center;
+        margin-top: 24px;
+        font-size: 12px;
+        color: var(--mist);
+        line-height: 1.6;
+      }
+      .compare-note strong {
+        color: var(--cream2);
+      }
+
+      #cta {
+        background: var(--green, #0c6b50);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      #cta::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 900px;
+        height: 900px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.05) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+      #cta::after {
+        content: "ELITE";
+        position: absolute;
+        bottom: -42px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 240px;
+        font-weight: 800;
+        color: rgba(0, 0, 0, 0.08);
+        letter-spacing: 8px;
+        white-space: nowrap;
+        pointer-events: none;
+      }
+      .cta-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 620px;
+        margin: 0 auto;
+      }
+      .cta-h {
+        font-size: clamp(48px, 7vw, 94px);
+        line-height: 0.9;
+        letter-spacing: -2px;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 18px;
+      }
+      .cta-sub {
+        font-size: 16px;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.74);
+        margin-bottom: 34px;
+      }
+      .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--gold2);
+        color: var(--black);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        padding: 16px 30px;
+        border-radius: var(--r);
+        transition: all 0.2s;
+        box-shadow: 0 4px 28px rgba(0, 0, 0, 0.26);
+      }
+      .cta-btn:hover {
+        background: #f5c040;
+        transform: translateY(-3px);
+      }
+      .cta-note {
+        margin-top: 16px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      footer {
+        background: var(--black);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 44px clamp(20px, 6vw, 90px);
+      }
+      .footer-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 28px;
+        flex-wrap: wrap;
+      }
+      .footer-brand {
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 3px;
+        color: var(--cream);
+      }
+      .footer-brand span {
+        color: var(--lime);
+      }
+      .footer-by {
+        font-size: 11px;
+        color: var(--mist);
+        margin-top: 4px;
+      }
+      .footer-copy {
+        font-size: 10.5px;
+        color: var(--mist2);
+        line-height: 1.85;
+        max-width: 480px;
+      }
+      .footer-links {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .footer-links a {
+        font-size: 11px;
+        color: var(--mist);
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--lime);
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      @media (max-width: 980px) {
+        .hero-content {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .hero-right {
+          display: none;
+        }
+        .offseason-intro {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .features-bento {
+          grid-template-columns: 1fr 1fr;
+        }
+        .fb-1,
+        .fb-2,
+        .fb-3,
+        .fb-4,
+        .fb-5,
+        .fb-6,
+        .fb-7 {
+          grid-column: span 1;
+        }
+        .press-grid,
+        .proof-cards,
+        .pricing-grid {
+          grid-template-columns: 1fr;
+        }
+        .pos-panel.active {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+      }
+      @media (max-width: 800px) {
+        .nav-links {
+          display: none;
+        }
+        .hero-ticker {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .ticker-item:nth-child(2n) {
+          border-right: none;
+        }
+        .setplays-bar {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 600px) {
+        .topbar {
+          justify-content: center;
+        }
+        .hero-btns {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .features-bento {
+          grid-template-columns: 1fr;
+        }
+        .footer-links {
+          gap: 12px;
+        }
+      }
+  </style>
+ </head>
+ <body>
+  ﻿
+  <div id="cur">
+  </div>
+  <div id="cur-r">
+  </div>
+  <div class="topbar">
+   <a href="tel:+13318030897">
+    ☎ 331-803-0897
+   </a>
+   <a href="mailto:NFSA@eliteraiderssoccer.com">
+    ✉ NFSA@eliteraiderssoccer.com
+   </a>
+   <span>
+    ELITE RAIDERS SOCCER
+   </span>
+  </div>
+  <nav id="nav">
+   <div class="nav-logo">
+    ELITE RAIDERS
+    <span>
+     SOCCER
+    </span>
+   </div>
+   <ul class="nav-links">
+    <li>
+     <a href="#system">
+      Program
+     </a>
+    </li>
+    <li>
+     <a href="#schedule">
+      Schedule
+     </a>
+    </li>
+    <li>
+     <a href="#pressing">
+      Tactics
+     </a>
+    </li>
+    <li>
+     <a href="#positions">
+      Positions
+     </a>
+    </li>
+    <li>
+     <a href="#pricing">
+      Pricing
+     </a>
+    </li>
+    <li>
+     <a class="nav-cta" href="#pricing">
+      Get Started
+     </a>
+    </li>
+   </ul>
+  </nav>
+  <section id="hero">
+   <div class="hero-grid">
+   </div>
+   <div class="hero-content">
+    <div>
+     <div class="hero-eyebrow">
+      Elite Raiders Soccer · Ages 12–19
+     </div>
+     <h1 class="hero-h1">
+      <span class="line-green">
+       Build
+      </span>
+      <span class="line-green">
+       Elite.
+      </span>
+      <span class="line-gold">
+       Stay Elite.
+      </span>
+     </h1>
+     <p class="hero-desc">
+      A complete development operating system for ambitious players who
+            want structure, accountability, and a real path from
+      <strong>
+       off-season work
+      </strong>
+      to
+      <strong>
+       match-day execution
+      </strong>
+      .
+     </p>
+     <div class="hero-btns">
+      <a class="btn-main" href="#pricing">
+       Secure Your License
+      </a>
+      <a class="btn-ghost" href="#system">
+       Explore the System
+      </a>
+     </div>
+    </div>
+    <div class="hero-right">
+     <div class="hero-stat-card">
+      <div class="hsc-num">
+       96
+      </div>
+      <div>
+       <div class="hsc-title">
+        Curated Drills
+       </div>
+       <div class="hsc-desc">
+        A complete bank of tactical, technical, and fitness work mapped
+                to clear development outcomes.
+       </div>
+      </div>
+     </div>
+     <div class="hero-stat-card">
+      <div class="hsc-num">
+       10
+      </div>
+      <div>
+       <div class="hsc-title">
+        Week Install Cycle
+       </div>
+       <div class="hsc-desc">
+        Every concept is introduced, tested, and evaluated through a
+                repeatable weekly rhythm.
+       </div>
+      </div>
+     </div>
+     <div class="hero-stat-card">
+      <div class="hsc-num">
+       12
+      </div>
+      <div>
+       <div class="hsc-title">
+        Month Program
+       </div>
+       <div class="hsc-desc">
+        In-season structure plus off-season preparation built into one
+                seamless operating model.
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="hero-ticker">
+    <div class="ticker-item">
+     <div class="ti-num">
+      7
+     </div>
+     <div class="ti-label">
+      Position Groups
+     </div>
+    </div>
+    <div class="ticker-item">
+     <div class="ti-num">
+      3
+     </div>
+     <div class="ti-label">
+      Non-Negotiables
+     </div>
+    </div>
+    <div class="ticker-item">
+     <div class="ti-num">
+      6
+     </div>
+     <div class="ti-label">
+      Set Plays
+     </div>
+    </div>
+    <div class="ticker-item">
+     <div class="ti-num">
+      100%
+     </div>
+     <div class="ti-label">
+      System Focus
+     </div>
+    </div>
+   </div>
+  </section>
+  <div aria-hidden="true" class="marquee-bar">
+   <div class="marquee-track">
+    <span class="m-item">
+     PRESS FIRST
+    </span>
+    <span class="m-dot">
+    </span>
+    <span class="m-item">
+     CONTROL THE PIVOT
+    </span>
+    <span class="m-dot">
+    </span>
+    <span class="m-item">
+     ATTACK VERTICALLY
+    </span>
+    <span class="m-dot">
+    </span>
+    <span class="m-item">
+     BUILD ELITE
+    </span>
+    <span class="m-dot">
+    </span>
+    <span class="m-item">
+     PRESS FIRST
+    </span>
+    <span class="m-dot">
+    </span>
+    <span class="m-item">
+     CONTROL THE PIVOT
+    </span>
+    <span class="m-dot">
+    </span>
+    <span class="m-item">
+     ATTACK VERTICALLY
+    </span>
+    <span class="m-dot">
+    </span>
+    <span class="m-item">
+     BUILD ELITE
+    </span>
+    <span class="m-dot">
+    </span>
+   </div>
+  </div>
+  <section id="system">
+   <div class="section-tag reveal">
+    Complete Tactical OS
+   </div>
+   <h2 class="h2 reveal d1">
+    The complete
+    <em>
+     operating
+    </em>
+    system
+   </h2>
+   <p class="body-text reveal d2">
+    This is not a loose set of drills. It is a repeatable, curriculum-based
+        development framework built for players, coaches, and academies that
+        want measurable growth.
+   </p>
+   <div class="features-bento">
+    <div class="fb fb-1 reveal" data-ghost="96">
+     <div class="fb-accent" style="background: var(--lime)">
+     </div>
+     <div class="fb-icon">
+      📋
+     </div>
+     <div class="fb-stat">
+      96
+     </div>
+     <div class="fb-title">
+      Curated Training Modules
+     </div>
+     <div class="fb-desc">
+      Every drill is mapped with coaching intent, execution targets, and
+            progression notes so training stays structured and intentional.
+     </div>
+    </div>
+    <div class="fb fb-2 reveal d1" data-ghost="07">
+     <div class="fb-accent" style="background: var(--gold2)">
+     </div>
+     <div class="fb-icon">
+      🏃
+     </div>
+     <div class="fb-stat">
+      7
+     </div>
+     <div class="fb-title">
+      Specialized Position Tracks
+     </div>
+     <div class="fb-desc">
+      Center backs, fullbacks, defensive mids, central mids, wingers,
+            strikers, and goalkeepers each receive their own tactical path.
+     </div>
+    </div>
+    <div class="fb fb-3 reveal d2" data-ghost="05">
+     <div class="fb-accent" style="background: var(--blue2)">
+     </div>
+     <div class="fb-icon">
+      🛡️
+     </div>
+     <div class="fb-stat">
+      5
+     </div>
+     <div class="fb-title">
+      Pressing Systems
+     </div>
+     <div class="fb-desc">
+      The program trains players to win possession quickly, organize the
+            shape around the ball, and attack vertically after recovery.
+     </div>
+    </div>
+    <div class="fb fb-4 reveal" data-ghost="R">
+     <div class="fb-accent" style="background: var(--purple)">
+     </div>
+     <div class="fb-icon">
+      📈
+     </div>
+     <div class="fb-title">
+      Report Cards and Roster Evaluation
+     </div>
+     <div class="fb-desc">
+      Players receive structured scorecards and development insights so
+            progress becomes measurable rather than abstract.
+     </div>
+    </div>
+    <div class="fb fb-5 reveal d1" data-ghost="NFL">
+     <div class="fb-accent" style="background: var(--orange2)">
+     </div>
+     <div class="fb-icon">
+      🏈
+     </div>
+     <div class="fb-title">
+      The NFL-grade installation mindset
+     </div>
+     <div class="fb-desc">
+      We teach concepts in phases: walkthrough, pressure, and performance.
+            No guessing, no random reps, no wasted time.
+     </div>
+    </div>
+    <div class="fb fb-6 reveal d2" data-ghost="12">
+     <div class="fb-accent" style="background: var(--lime)">
+     </div>
+     <div class="fb-icon">
+      🧠
+     </div>
+     <div class="fb-title">
+      A true 12-month development model
+     </div>
+     <div class="fb-desc">
+      In-season structure and off-season fitness and tactical preparation
+            work hand-in-hand so players remain sharp year-round.
+     </div>
+    </div>
+    <div class="fb fb-7 reveal d3" data-ghost="∞">
+     <div class="fb-accent" style="background: var(--gold2)">
+     </div>
+     <div class="fb-icon">
+      ⚡
+     </div>
+     <div class="fb-title">
+      Built for serious players
+     </div>
+     <div class="fb-desc">
+      The system fits those who want discipline, continuity, and a
+            stronger sense of identity on the field.
+     </div>
+    </div>
+   </div>
+  </section>
+  <section id="schedule" style="background: var(--ink2)">
+   <div class="section-tag reveal">
+    In-Season Framework
+   </div>
+   <h2 class="h2 reveal d1">
+    The 10-week
+    <em>
+     install
+    </em>
+    schedule
+   </h2>
+   <p class="body-text reveal d2">
+    Every concept is introduced step by step, tested under pressure, and
+        built into the player’s habits rather than left as theory.
+   </p>
+   <div class="press-grid" style="margin-top: 44px">
+    <div class="pc reveal" data-n="OTA" style="--pc-col: var(--lime)">
+     <div class="pc-nfl">
+      Weeks 1–6 · Concept Installation
+     </div>
+     <div class="pc-title">
+      The OTA Phase
+     </div>
+     <div class="pc-desc">
+      Players learn landmarks, shape, and communication at a walk-through
+            pace before the pressure is increased.
+     </div>
+     <div class="pc-trigger">
+      Focus:
+      <strong style="color: var(--lime)">
+       shape, spacing, and decision-making
+      </strong>
+     </div>
+    </div>
+    <div class="pc reveal d1" data-n="CAMP" style="--pc-col: var(--gold2)">
+     <div class="pc-nfl">
+      Weeks 7–10 · Pressure Testing
+     </div>
+     <div class="pc-title">
+      The Camp Phase
+     </div>
+     <div class="pc-desc">
+      The same concepts are now applied at live speed with real
+            competitive pressure, so execution is tested under match conditions.
+     </div>
+     <div class="pc-trigger">
+      Focus:
+      <strong style="color: var(--gold2)">
+       tempo, reactions, and repeatable habits
+      </strong>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section id="offseason">
+   <div class="offseason-intro">
+    <div>
+     <div class="section-tag reveal">
+      Off-Season Fitness
+     </div>
+     <h2 class="h2 reveal d1">
+      The off-season that makes
+      <em>
+       in-season
+      </em>
+      look easy
+     </h2>
+     <p class="body-text reveal d2">
+      The best teams do not wait for the season to start to improve. Our
+            off-season plan builds engine, durability, and tactical sharpness in
+            parallel.
+     </p>
+    </div>
+    <div class="reveal d3">
+     <div class="week-card">
+      <div class="wc-header">
+       <span class="wc-week">
+        Weekly Rhythm
+       </span>
+       <span class="wc-focus">
+        Performance
+       </span>
+      </div>
+      <div class="wc-body">
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Mon
+        </span>
+        <span>
+         Strength + mobility + recovery
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Tue
+        </span>
+        <span>
+         Acceleration and change-of-direction
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Wed
+        </span>
+        <span>
+         Technical decision-making under fatigue
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Thu
+        </span>
+        <span>
+         Tactical patterns + small-sided pressure
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Fri
+        </span>
+        <span>
+         Speed endurance and movement quality
+        </span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="os-tabs">
+    <div class="os-tab active" onclick="switchOs('phase1', this)">
+     Phase 1 · Foundation
+    </div>
+    <div class="os-tab" onclick="switchOs('phase2', this)">
+     Phase 2 · Power
+    </div>
+    <div class="os-tab" onclick="switchOs('phase3', this)">
+     Phase 3 · Match Ready
+    </div>
+   </div>
+   <div class="os-panel active" id="phase1">
+    <div class="week-grid">
+     <div class="week-card">
+      <div class="wc-header">
+       <span class="wc-week">
+        Week 1
+       </span>
+       <span class="wc-focus">
+        Base
+       </span>
+      </div>
+      <div class="wc-body">
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Mon
+        </span>
+        <span>
+         Bodyweight and mobility reset
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Wed
+        </span>
+        <span>
+         Tempo runs and technical volume
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Fri
+        </span>
+        <span>
+         Ball mastery and first-touch quality
+        </span>
+       </div>
+      </div>
+     </div>
+     <div class="week-card">
+      <div class="wc-header">
+       <span class="wc-week">
+        Week 2
+       </span>
+       <span class="wc-focus">
+        Agility
+       </span>
+      </div>
+      <div class="wc-body">
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Mon
+        </span>
+        <span>
+         Strength endurance circuits
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Wed
+        </span>
+        <span>
+         Cutting and deceleration work
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Fri
+        </span>
+        <span>
+         Passing under fatigue
+        </span>
+       </div>
+      </div>
+     </div>
+     <div class="week-card">
+      <div class="wc-header">
+       <span class="wc-week">
+        Week 3
+       </span>
+       <span class="wc-focus">
+        Output
+       </span>
+      </div>
+      <div class="wc-body">
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Mon
+        </span>
+        <span>
+         Power development and jump mechanics
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Wed
+        </span>
+        <span>
+         Change-of-direction mechanics
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Fri
+        </span>
+        <span>
+         Layered ball retention games
+        </span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="os-panel" id="phase2">
+    <div class="week-grid">
+     <div class="week-card">
+      <div class="wc-header">
+       <span class="wc-week">
+        Week 4
+       </span>
+       <span class="wc-focus">
+        Strength
+       </span>
+      </div>
+      <div class="wc-body">
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Mon
+        </span>
+        <span>
+         Lower-body strength + core
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Wed
+        </span>
+        <span>
+         Speed mechanics and sprint starts
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Fri
+        </span>
+        <span>
+         Small-sided possession and pressure
+        </span>
+       </div>
+      </div>
+     </div>
+     <div class="week-card">
+      <div class="wc-header">
+       <span class="wc-week">
+        Week 5
+       </span>
+       <span class="wc-focus">
+        Power
+       </span>
+      </div>
+      <div class="wc-body">
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Mon
+        </span>
+        <span>
+         Explosiveness and reactive strength
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Wed
+        </span>
+        <span>
+         Repeated sprint ability
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Fri
+        </span>
+        <span>
+         Transition defending and counterpressing
+        </span>
+       </div>
+      </div>
+     </div>
+     <div class="week-card">
+      <div class="wc-header">
+       <span class="wc-week">
+        Week 6
+       </span>
+       <span class="wc-focus">
+        Capacity
+       </span>
+      </div>
+      <div class="wc-body">
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Mon
+        </span>
+        <span>
+         Conditioning and aerobic durability
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Wed
+        </span>
+        <span>
+         High-intensity repeated efforts
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Fri
+        </span>
+        <span>
+         Decision-making under fatigue
+        </span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="os-panel" id="phase3">
+    <div class="week-grid">
+     <div class="week-card">
+      <div class="wc-header">
+       <span class="wc-week">
+        Week 7
+       </span>
+       <span class="wc-focus">
+        Match Prep
+       </span>
+      </div>
+      <div class="wc-body">
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Mon
+        </span>
+        <span>
+         Speed endurance and mobility
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Wed
+        </span>
+        <span>
+         Competitive 8v8 + tactical cues
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Fri
+        </span>
+        <span>
+         Live pressure and game state work
+        </span>
+       </div>
+      </div>
+     </div>
+     <div class="week-card">
+      <div class="wc-header">
+       <span class="wc-week">
+        Week 8
+       </span>
+       <span class="wc-focus">
+        Sharpness
+       </span>
+      </div>
+      <div class="wc-body">
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Mon
+        </span>
+        <span>
+         Recovery and activation
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Wed
+        </span>
+        <span>
+         Positional tactical rotations
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Fri
+        </span>
+        <span>
+         Match-based decision-making
+        </span>
+       </div>
+      </div>
+     </div>
+     <div class="week-card">
+      <div class="wc-header">
+       <span class="wc-week">
+        Week 9
+       </span>
+       <span class="wc-focus">
+        Peak
+       </span>
+      </div>
+      <div class="wc-body">
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Mon
+        </span>
+        <span>
+         Performance taper and readiness
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Wed
+        </span>
+        <span>
+         Final technical sharpness block
+        </span>
+       </div>
+       <div class="wc-day">
+        <span class="wc-day-label">
+         Fri
+        </span>
+        <span>
+         Full-speed match rehearsal
+        </span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="fitness-pillars">
+    <div class="fp-card reveal" style="--fp-color: var(--lime)">
+     <div class="fp-icon">
+      💪
+     </div>
+     <div class="fp-title">
+      Strength &amp; Durability
+     </div>
+     <div class="fp-text">
+      Power, movement quality, and resilience are built through
+            progressive, repeatable strength work.
+     </div>
+    </div>
+    <div class="fp-card reveal d1" style="--fp-color: var(--gold2)">
+     <div class="fp-icon">
+      ⚡
+     </div>
+     <div class="fp-title">
+      Speed &amp; Reactions
+     </div>
+     <div class="fp-text">
+      Acceleration, deceleration, and change-of-direction are trained with
+            purpose and not just volume.
+     </div>
+    </div>
+    <div class="fp-card reveal d2" style="--fp-color: var(--blue2)">
+     <div class="fp-icon">
+      🧠
+     </div>
+     <div class="fp-title">
+      Tactical Sharpness
+     </div>
+     <div class="fp-text">
+      Players strengthen their game intelligence by making decisions under
+            fatigue and pressure.
+     </div>
+    </div>
+   </div>
+  </section>
+  <div class="setplays-bar reveal">
+   <div>
+    <div class="sp-title">
+     Fixed set-play library installed
+    </div>
+    <div class="sp-text">
+     Our system includes a clear set-play framework so teams can attack and
+          defend dead-ball moments with clarity and repetition.
+    </div>
+   </div>
+   <div class="sp-plays">
+    <span class="sp-play">
+     ALPHA
+    </span>
+    <span class="sp-play">
+     BRAVO
+    </span>
+    <span class="sp-play">
+     CHARLIE
+    </span>
+    <span class="sp-play">
+     DELTA
+    </span>
+    <span class="sp-play">
+     ECHO
+    </span>
+    <span class="sp-play">
+     ZETA
+    </span>
+   </div>
+  </div>
+  <section id="pressing">
+   <div class="section-tag reveal">
+    Program Identity
+   </div>
+   <h2 class="h2 reveal d1">
+    The three
+    <em>
+     non-negotiables
+    </em>
+   </h2>
+   <p class="body-text reveal d2">
+    Every player inside the Elite Raiders framework is trained through the
+        same priorities: recover the ball quickly, control the pivot, and attack
+        with purpose.
+   </p>
+   <div class="press-grid">
+    <div class="pc reveal" data-n="01" style="--pc-col: var(--lime)">
+     <div class="pc-title">
+      1. Press First
+     </div>
+     <div class="pc-desc">
+      The team wins the ball back fast, with coordinated pressure and
+            shared responsibility rather than isolated chasing.
+     </div>
+     <div class="pc-trigger">
+      Trigger:
+      <strong style="color: var(--lime)">
+       “PRESS!”
+      </strong>
+     </div>
+    </div>
+    <div class="pc reveal d1" data-n="02" style="--pc-col: var(--gold2)">
+     <div class="pc-title">
+      2. Control the Pivot Hub
+     </div>
+     <div class="pc-desc">
+      The defensive midfielder acts as the connecting pillar between the
+            back line and attacking phases.
+     </div>
+     <div class="pc-trigger">
+      Focus:
+      <strong style="color: var(--gold2)">
+       scanning, switching, and tempo control
+      </strong>
+     </div>
+    </div>
+    <div class="pc reveal d2" data-n="03" style="--pc-col: var(--blue2)">
+     <div class="pc-title">
+      3. Attack Vertically
+     </div>
+     <div class="pc-desc">
+      The attack must create fast, clear lanes to goal through wide
+            overloads, direct combinations, and vertical support.
+     </div>
+     <div class="pc-trigger">
+      Outcome:
+      <strong style="color: var(--blue2)">
+       more threat, less hesitation
+      </strong>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section id="positions">
+   <div class="section-tag reveal">
+    Roster Specialization
+   </div>
+   <h2 class="h2 reveal d1">
+    Position group
+    <em>
+     blueprints
+    </em>
+   </h2>
+   <p class="body-text reveal d2">
+    We build tactical profiles by unit, giving players a specific path for
+        their role rather than one-size-fits-all training.
+   </p>
+   <div class="pos-tabs" id="posTabs">
+    <div class="pos-tab active" onclick="switchPos('cb', this)">
+     Center Back
+    </div>
+    <div class="pos-tab" onclick="switchPos('fb', this)">
+     Fullback
+    </div>
+    <div class="pos-tab" onclick="switchPos('dm', this)">
+     Defensive Mid
+    </div>
+    <div class="pos-tab" onclick="switchPos('cm', this)">
+     Central Mid
+    </div>
+    <div class="pos-tab" onclick="switchPos('wg', this)">
+     Winger
+    </div>
+    <div class="pos-tab" onclick="switchPos('st', this)">
+     Striker
+    </div>
+    <div class="pos-tab" onclick="switchPos('gk', this)">
+     Goalkeeper
+    </div>
+   </div>
+   <div class="pos-panel active" id="pos-cb">
+    <div>
+     <div class="pos-title">
+      The Spine Anchor
+     </div>
+     <div class="pos-sub">
+      The center back coordinates the defensive line, manages pressure
+            pockets, and starts the team’s build-up patterns in an organized
+            way.
+     </div>
+     <div class="pos-attrs">
+      <span class="pos-attr" style="background: rgba(24, 184, 114, 0.12); color: var(--lime)">
+       Aerial Dominance
+      </span>
+      <span class="pos-attr" style="background: rgba(240, 174, 42, 0.12); color: var(--gold2)">
+       Line Leadership
+      </span>
+     </div>
+    </div>
+    <div class="pos-drills">
+     <div class="pos-drill">
+      <div class="pd-num">
+       01
+      </div>
+      <div>
+       <div class="pd-name">
+        Deep Block Counter-Drop
+       </div>
+       <div class="pd-desc">
+        Tracking second-wave runs and managing compact defensive lines
+                under pressure.
+       </div>
+      </div>
+     </div>
+     <div class="pos-drill">
+      <div class="pd-num">
+       02
+      </div>
+      <div>
+       <div class="pd-name">
+        Vertical Break Line-Pass
+       </div>
+       <div class="pd-desc">
+        Playing through pressure with accurate distribution that links
+                the back line to the midfield.
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="pos-panel" id="pos-fb">
+    <div>
+     <div class="pos-title">
+      The Wing Engine
+     </div>
+     <div class="pos-sub">
+      The fullback must recover quickly, overlap with purpose, and
+            maintain width without losing defensive balance.
+     </div>
+     <div class="pos-attrs">
+      <span class="pos-attr" style="background: rgba(90, 158, 232, 0.12); color: var(--blue2)">
+       Channel Recovery
+      </span>
+      <span class="pos-attr" style="background: rgba(106, 79, 181, 0.12); color: #b79ef0">
+       Overlap Timing
+      </span>
+     </div>
+    </div>
+    <div class="pos-drills">
+     <div class="pos-drill">
+      <div class="pd-num">
+       03
+      </div>
+      <div>
+       <div class="pd-name">
+        Touchline Recovery Sprint
+       </div>
+       <div class="pd-desc">
+        Recovering immediately after turnovers to close dangerous wide
+                channels.
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="pos-panel" id="pos-dm">
+    <div>
+     <div class="pos-title">
+      The Tactical Pivot
+     </div>
+     <div class="pos-sub">
+      The defensive midfielder connects the phases of play and keeps the
+            structure stable through every transition.
+     </div>
+     <div class="pos-attrs">
+      <span class="pos-attr" style="background: rgba(24, 184, 114, 0.12); color: var(--lime)">
+       360° Scanning
+      </span>
+      <span class="pos-attr" style="
+                background: rgba(240, 120, 64, 0.12);
+                color: var(--orange2);
+              ">
+       Tempo Control
+      </span>
+     </div>
+    </div>
+    <div class="pos-drills">
+     <div class="pos-drill">
+      <div class="pd-num">
+       04
+      </div>
+      <div>
+       <div class="pd-name">
+        Mirror Ball Anchor
+       </div>
+       <div class="pd-desc">
+        Reading the ball, the body shape, and the pass options in one
+                fluid scanning pattern.
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="pos-panel" id="pos-cm">
+    <div>
+     <div class="pos-title">
+      The Box-to-Box Engine
+     </div>
+     <div class="pos-sub">
+      The central midfielder creates links, drives the rhythm, and
+            supports the attack while remaining available for defensive
+            recovery.
+     </div>
+     <div class="pos-attrs">
+      <span class="pos-attr" style="background: rgba(255, 255, 255, 0.06); color: var(--cream)">
+       Lactate Capacity
+      </span>
+      <span class="pos-attr" style="background: rgba(184, 48, 48, 0.12); color: var(--red2)">
+       Pocket Dribbling
+      </span>
+     </div>
+    </div>
+    <div class="pos-drills">
+     <div class="pos-drill">
+      <div class="pd-num">
+       05
+      </div>
+      <div>
+       <div class="pd-name">
+        Zone 14 Overload Attacks
+       </div>
+       <div class="pd-desc">
+        Creating combinations that break defensive lines and unlock
+                shots from central areas.
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="pos-panel" id="pos-wg">
+    <div>
+     <div class="pos-title">
+      The Wide Isolator
+     </div>
+     <div class="pos-sub">
+      Wingers pin defenders back, force wide overloads, and create clear
+            pathways to the end line or final pass.
+     </div>
+     <div class="pos-attrs">
+      <span class="pos-attr" style="background: rgba(240, 174, 42, 0.12); color: var(--gold2)">
+       1v1 Acceleration
+      </span>
+      <span class="pos-attr" style="background: rgba(24, 184, 114, 0.12); color: var(--lime)">
+       Byline Crossing
+      </span>
+     </div>
+    </div>
+    <div class="pos-drills">
+     <div class="pos-drill">
+      <div class="pd-num">
+       06
+      </div>
+      <div>
+       <div class="pd-name">
+        Boundary Isolation Attack
+       </div>
+       <div class="pd-desc">
+        Creating one-versus-one advantage on the outside to produce
+                dangerous width and service.
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="pos-panel" id="pos-st">
+    <div>
+     <div class="pos-title">
+      The Target Finisher
+     </div>
+     <div class="pos-sub">
+      The striker makes the final decisions in the box and helps the team
+            keep attacks alive with hold-up play and vertical runs.
+     </div>
+     <div class="pos-attrs">
+      <span class="pos-attr" style="background: rgba(184, 48, 48, 0.12); color: var(--red2)">
+       Hold-Up Force
+      </span>
+      <span class="pos-attr" style="
+                background: rgba(240, 120, 64, 0.12);
+                color: var(--orange2);
+              ">
+       Box Striking
+      </span>
+     </div>
+    </div>
+    <div class="pos-drills">
+     <div class="pos-drill">
+      <div class="pd-num">
+       07
+      </div>
+      <div>
+       <div class="pd-name">
+        Spine Hold-Up Drop
+       </div>
+       <div class="pd-desc">
+        Receiving and carrying pressure while laying off accurate passes
+                to runners in behind.
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="pos-panel" id="pos-gk">
+    <div>
+     <div class="pos-title">
+      The Sweeper Distributor
+     </div>
+     <div class="pos-sub">
+      The goalkeeper is an active playmaker and a strong first organizer,
+            helping the team start attacks from the back with control.
+     </div>
+     <div class="pos-attrs">
+      <span class="pos-attr" style="background: rgba(90, 158, 232, 0.12); color: var(--blue2)">
+       Box Sweeping
+      </span>
+      <span class="pos-attr" style="background: rgba(106, 79, 181, 0.12); color: #b79ef0">
+       Zone Passing
+      </span>
+     </div>
+    </div>
+    <div class="pos-drills">
+     <div class="pos-drill">
+      <div class="pd-num">
+       08
+      </div>
+      <div>
+       <div class="pd-name">
+        Build-Out Split Pass
+       </div>
+       <div class="pd-desc">
+        Executing clean distribution between lines under active
+                opposition pressure.
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section id="proof">
+   <div class="section-tag reveal">
+    Proof
+   </div>
+   <h2 class="h2 reveal d1">
+    Why this works
+   </h2>
+   <p class="proof-pull reveal d2">
+    We do not rely on random intensity. We build habits, structure, and
+        confidence through a system that is clear, repeatable, and demanding.
+    <em>
+     That is how elite develops.
+    </em>
+   </p>
+   <div class="proof-cards">
+    <div class="proof-card reveal">
+     <div class="proof-icon">
+      🧩
+     </div>
+     <div class="proof-title">
+      Clarity beats chaos
+     </div>
+     <div class="proof-text">
+      Players know what they are working on, why it matters, and how each
+            session contributes to the bigger plan.
+     </div>
+    </div>
+    <div class="proof-card reveal d1">
+     <div class="proof-icon">
+      📈
+     </div>
+     <div class="proof-title">
+      Progress is visible
+     </div>
+     <div class="proof-text">
+      The system creates a roadmap, so development progress can be
+            measured rather than assumed.
+     </div>
+    </div>
+    <div class="proof-card reveal d2">
+     <div class="proof-icon">
+      🛠️
+     </div>
+     <div class="proof-title">
+      Discipline creates freedom
+     </div>
+     <div class="proof-text">
+      Once players understand the framework, they can execute with greater
+            confidence and more creativity on the field.
+     </div>
+    </div>
+   </div>
+  </section>
+  <section id="pricing">
+   <div class="section-tag reveal">
+    Tiers &amp; Investment
+   </div>
+   <h2 class="h2 reveal d1">
+    System
+    <em>
+     licensing
+    </em>
+    plans
+   </h2>
+   <p class="body-text reveal d2">
+    Choose the level that matches your ambition, whether you are building as
+        an individual athlete, a coach, or a full academy program.
+   </p>
+   <div class="pricing-grid">
+    <div class="price-card reveal">
+     <div class="pt">
+      Individual Track
+     </div>
+     <div class="pn">
+      Player Access
+     </div>
+     <div class="pd">
+      Perfect for players who want a serious training framework with
+            structure and accountability built in.
+     </div>
+     <div class="pp">
+      <sup>
+       $
+      </sup>
+      24
+      <span style="font-size: 20px; font-weight: 500; letter-spacing: 0">
+       /mo
+      </span>
+     </div>
+     <div class="pp-per">
+      Billed monthly. Cancel anytime.
+     </div>
+     <div class="p-div">
+     </div>
+     <div class="p-feats">
+      <div class="p-feat">
+       Complete drill library
+      </div>
+      <div class="p-feat">
+       Install workflow and weekly rhythm
+      </div>
+      <div class="p-feat">
+       Off-season preparation blueprint
+      </div>
+      <div class="p-feat no">
+       Multi-coach coordination portal
+      </div>
+     </div>
+     <button class="btn-po btn-po-out">
+      License System
+     </button>
+    </div>
+    <div class="price-card hot reveal d1">
+     <div class="pt">
+      Most Popular
+     </div>
+     <div class="pn">
+      Coach License
+     </div>
+     <div class="pd">
+      Built for coaches who want a complete operating model for their
+            roster and training week.
+     </div>
+     <div class="pp">
+      <sup>
+       $
+      </sup>
+      74
+      <span style="font-size: 20px; font-weight: 500; letter-spacing: 0">
+       /mo
+      </span>
+     </div>
+     <div class="pp-per">
+      Billed monthly. Complete team execution.
+     </div>
+     <div class="p-div">
+     </div>
+     <div class="p-feats">
+      <div class="p-feat">
+       Full system access
+      </div>
+      <div class="p-feat">
+       Position-specific training paths
+      </div>
+      <div class="p-feat">
+       Install and evaluation framework
+      </div>
+      <div class="p-feat">
+       Report cards and evaluation tools
+      </div>
+     </div>
+     <button class="btn-po btn-po-fill">
+      License System
+     </button>
+    </div>
+    <div class="price-card reveal d2">
+     <div class="pt">
+      Enterprise
+     </div>
+     <div class="pn">
+      Academy License
+     </div>
+     <div class="pd">
+      The full deployment solution for clubs and academies that want an
+            organized long-term development engine.
+     </div>
+     <div class="pp">
+      <sup>
+       $
+      </sup>
+      3,499
+     </div>
+     <div class="pp-per">
+      per year
+     </div>
+     <div class="p-div">
+     </div>
+     <div class="p-feats">
+      <div class="p-feat">
+       Unlimited coach access
+      </div>
+      <div class="p-feat">
+       Advanced deployment support
+      </div>
+      <div class="p-feat">
+       Foundations tier access
+      </div>
+      <div class="p-feat">
+       Quarterly content additions
+      </div>
+     </div>
+     <button class="btn-po btn-po-gold">
+      License Entire Org
+     </button>
+    </div>
+   </div>
+   <p class="compare-note reveal">
+    Have custom deployment questions? Reach out directly to
+    <strong>
+     Nana Frimpong Sintim-Aboagye
+    </strong>
+    at
+    <a href="mailto:NFSA@eliteraiderssoccer.com" style="color: var(--lime); text-decoration: underline">
+     NFSA@eliteraiderssoccer.com
+    </a>
+    .
+   </p>
+  </section>
+  <section id="cta">
+   <div class="cta-inner">
+    <h2 class="cta-h">
+     Install the system.
+    </h2>
+    <p class="cta-sub">
+     Stop patching together random drills. Deploy a professional,
+          periodized, and repeatable framework built for elite development.
+    </p>
+    <a class="cta-btn" href="#pricing">
+     Secure License Access
+    </a>
+    <div class="cta-note">
+     Instant setup · Built to work as a standalone experience
+    </div>
+   </div>
+  </section>
+  <footer>
+   <div class="footer-row">
+    <div>
+     <div class="footer-brand">
+      ELITE RAIDERS
+      <span>
+       SOCCER
+      </span>
+     </div>
+     <div class="footer-by">
+      Founder &amp; Head Coach: Nana Frimpong Sintim-Aboagye
+     </div>
+     <div class="footer-copy">
+      © 2026 Nana Frimpong Sintim-Aboagye. All Rights Reserved. Elite
+            Raiders Soccer operates with a professional development model
+            focused on structure, continuity, and long-term player growth.
+     </div>
+    </div>
+    <div class="footer-links">
+     <a href="#system">
+      Operating System
+     </a>
+     <a href="#schedule">
+      Install Framework
+     </a>
+     <a href="#pressing">
+      Tactical Identity
+     </a>
+     <a href="#positions">
+      Roster Blueprints
+     </a>
+     <a href="#pricing">
+      Pricing Access
+     </a>
+    </div>
+   </div>
+  </footer>
+  <script>
+   const cur = document.getElementById("cur");
+      const curR = document.getElementById("cur-r");
+      document.addEventListener("mousemove", (e) => {
+        cur.style.left = e.clientX + "px";
+        cur.style.top = e.clientY + "px";
+        curR.style.left = e.clientX + "px";
+        curR.style.top = e.clientY + "px";
+      });
+      document
+        .querySelectorAll(
+          "a, button, .os-tab, .pos-tab, .week-card, .price-card, .fp-card, .pc",
+        )
+        .forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            cur.style.width = "14px";
+            cur.style.height = "14px";
+            curR.style.width = "48px";
+            curR.style.height = "48px";
+            curR.style.borderColor = "rgba(24,184,114,.45)";
+          });
+          el.addEventListener("mouseleave", () => {
+            cur.style.width = "10px";
+            cur.style.height = "10px";
+            curR.style.width = "40px";
+            curR.style.height = "40px";
+            curR.style.borderColor = "rgba(24,184,114,.35)";
+          });
+        });
+
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("in");
+          });
+        },
+        { threshold: 0.11 },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+
+      function switchOs(id, el) {
+        document
+          .querySelectorAll(".os-tab")
+          .forEach((t) => t.classList.remove("active"));
+        document
+          .querySelectorAll(".os-panel")
+          .forEach((p) => p.classList.remove("active"));
+        el.classList.add("active");
+        document.getElementById(id).classList.add("active");
+      }
+
+      function switchPos(id, el) {
+        document
+          .querySelectorAll(".pos-tab")
+          .forEach((t) => t.classList.remove("active"));
+        document
+          .querySelectorAll(".pos-panel")
+          .forEach((p) => p.classList.remove("active"));
+        el.classList.add("active");
+        document.getElementById("pos-" + id).classList.add("active");
+      }
+  </script>
+ </body>
+</html>
